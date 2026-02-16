@@ -7,15 +7,19 @@ SELECT
     name,
     next_maintenance_date
 FROM equipment
-WHERE next_maintenance_date BETWEEN '2025-01-01' AND date('2025-01-01', '+30 days'); --need to explain this
+WHERE next_maintenance_date >= '2025-01-01' 
+AND next_maintenance_date <= date('2025-01-01', '+30 days');
+
 -- 3.2 
 SELECT
-    type AS equipment_type
+    type AS equipment_type,
     COUNT(*) AS count 
 FROM equipment
+GROUP BY type;
+
 -- 3.3 
 SELECT
     type,
-    AVG((strftime('%s','now') - strftime('%s', purchase_date)) / 86400) AS avg_age_days --need to explain this
+    AVG((strftime('%s','2025-01-01') - strftime('%s', purchase_date)) / 86400) AS avg_age_days
 FROM equipment
 GROUP BY type;
