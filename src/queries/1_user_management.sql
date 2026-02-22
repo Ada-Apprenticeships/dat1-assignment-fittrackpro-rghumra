@@ -31,14 +31,8 @@ FROM members m
 JOIN class_attendance ca
     ON m.member_id = ca.member_id
 GROUP BY m.member_id
-HAVING COUNT(ca.class_attendance_id) = (
-    SELECT MAX(cnt)
-    FROM (
-        SELECT COUNT(*) AS cnt
-        FROM class_attendance
-        GROUP BY member_id
-    )
-);
+ORDER BY registration_count DESC
+LIMIT 1;
 
 -- 1.5
 SELECT 
@@ -50,16 +44,8 @@ FROM members m
 LEFT JOIN class_attendance ca
     ON m.member_id = ca.member_id
 GROUP BY m.member_id
-HAVING COUNT(ca.class_attendance_id) = (
-    SELECT MIN(cnt)
-    FROM (
-        SELECT COUNT(ca2.class_attendance_id) AS cnt
-        FROM members m2
-        LEFT JOIN class_attendance ca2
-            ON m2.member_id = ca2.member_id
-        GROUP BY m2.member_id
-    )
-);
+ORDER BY registration_count ASC
+LIMIT 1;
 
 -- 1.6
 SELECT COUNT(*) AS count

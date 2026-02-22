@@ -21,5 +21,4 @@ JOIN staff s
 WHERE s.position = 'Trainer'
     AND pts.session_date >= '2025-01-20' 
     AND pts.session_date <= '2025-02-19'
-GROUP BY s.staff_id
-HAVING session_count >= 1;
+GROUP BY s.staff_id;
