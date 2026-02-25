@@ -24,7 +24,7 @@ SELECT
 FROM payments
 WHERE payment_type = 'Monthly membership fee' 
     AND payment_date >= '2024-11-01' 
-    AND payment_date < '2025-03-01'
+    AND payment_date < '2025-02-01'
 GROUP BY month
 ORDER BY month;
 

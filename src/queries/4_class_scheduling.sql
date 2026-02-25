@@ -2,7 +2,7 @@
 .mode column
 
 -- 4.1 
-SELECT
+SELECT DISTINCT
     c.class_id,
     c.name AS class_name,
     s.first_name || ' ' || s.last_name AS instructor_name
@@ -10,8 +10,7 @@ FROM classes c
 JOIN class_schedule cs 
     ON c.class_id = cs.class_id
 JOIN staff s 
-    ON cs.staff_id = s.staff_id
-;
+    ON cs.staff_id = s.staff_id;
 
 -- 4.2 
 SELECT
